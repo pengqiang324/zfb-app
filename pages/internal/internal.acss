@@ -1,0 +1,103 @@
+
+.goods-detail-box {
+  padding-bottom: 120rpx;
+}
+.goods-detail-image {
+  width: 100%;
+}
+.goods-detail-info {
+  padding: 14rpx 20rpx 24rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+.goods-detail-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.goods-detail-prices {
+  display: flex;
+  align-items: flex-end;
+  color: #FF6666;
+  font-weight: bold;
+}
+.goods-detail-money {
+  position: relative;
+  top: 3rpx;
+  font-size: 36rpx;
+}
+.goods-detail-saleQty {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #999999;
+}
+.goods-detail-title {
+  padding-top: 20rpx;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+.goods-detail-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 120rpx;
+  padding: 20rpx 30rpx;
+  background: #FFFFFF;
+  box-shadow: 0px -10px 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+.goods-detail-buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80rpx;
+  /* background: linear-gradient(180deg, rgb(233, 232, 231) 0%, rgb(196, 195, 195) 100%); */
+  background: linear-gradient(180deg, #FF844F 0%, #F3633E 100%);
+  color: #fff;
+  border-radius: 10rpx;
+}
+.goods-detail-content {
+  margin-top: 24rpx;
+  padding: 20rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+.goods-detail_header {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 28rpx;
+  color: #333333;
+}
+.goods-detail_info {
+  font-family: PingFang SC;
+  padding: 20rpx 0;
+  font-size: 24rpx;
+}
+.canvas-element {
+  width: 100%;
+  /* display:none; */
+}
+#canvas {
+  width: 100%;
+}
+.loading {
+  min-height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.loading-text {
+  font-size: 24rpx;
+  padding-top: 8px;
+}

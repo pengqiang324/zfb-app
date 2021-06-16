@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "add-button": "/components/add-button/add-button",
+    "i-button": "iview-aliapp/dist/dist/button/index",
+    "am-icon": "mini-ali-ui/es/am-icon/index",
+    "loading": "mini-ali-ui/es/loading/index",
+    "ant-skeleton":"ant-skeleton/components/skeleton/skeleton"
+  },
+  "styleIsolation": "apply-shared"
+}

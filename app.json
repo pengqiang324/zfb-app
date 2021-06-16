@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/internal/internal",
+    "pages/orderBuy/orderBuy",
+    "pages/address/address",
+    "pages/payment/payment"
+  ],
+  "window": {
+    "defaultTitle": "赞丽生活"
+  }
+}
