@@ -7,7 +7,7 @@ App({
     }
   },
   onShow(options) {
-    // 从后台被 scheme 重新打开 
+    // 从后台被 scheme 重新打开
     // 热启动 app 打开小程序
     if (options.query) {
       my.setStorageSync({ key: 'query', data: options.query })
@@ -57,7 +57,7 @@ App({
         "tagId": 0,
         "isBrushzanli": "true",
         "apiCode": 131,
-        "appVer": "1.3.1",
+        "appVer": "1.4.1",
         "channel": "zanli",
         "deviceId": "af72dc99efdf584b",
         "clientType": "ANDROID",
@@ -80,6 +80,10 @@ App({
         },
         data,
         success: (result) => {
+          if(!result.data.code) {
+            my.alert({content: `${result.data.msg}`})
+            return
+          }
           const tradeNO = result.data.data
           my.setStorageSync({ key: 'tradeNO', data: tradeNO })
           my.tradePay({

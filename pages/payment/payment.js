@@ -50,9 +50,30 @@ Page({
       }
     } else {
       // 正常页面交互
+      var timestamp = Date.parse(new Date())
+      var data = {
+        "tagId": 0,
+        "page": 1,
+        "pageSize": 100,
+        "isBrushzanli": "true",
+        "apiCode": 131,
+        "appVer": "1.4.1",
+        "channel": "zanli",
+        "deviceId": "af72dc99efdf584b",
+        "clientType": "ANDROID",
+        "idcode": "guest_c3524b8d02f749329498197887127f22",
+        "appType": "android",
+        "packageName": "com.ninesixshop.say",
+        "token": "guest_6642acf47ef746baab10f049be49c5d2",
+        "timestamp": timestamp
+      };
       my.request({
         url: `https://t-api.5296live.com/mall/xcxpay/create?amount=${this.data.dataInfo.price}&code=${this.data.authCode}`,
         method: 'POST',
+        headers: {
+          "content-type":  'application/x-www-form-urlencoded'
+        },
+        data,
         success: (result) => {
           if (result.data.code == 0) {
             my.alert({content: result.data.msg})
@@ -91,7 +112,7 @@ Page({
         "tagId": 0,
         "isBrushzanli": "true",
         "apiCode": 131,
-        "appVer": "1.3.1",
+        "appVer": "1.4.1",
         "channel": "zanli",
         "deviceId": "af72dc99efdf584b",
         "clientType": "ANDROID",
@@ -118,6 +139,10 @@ Page({
         },
         data,
         success: (result) => {
+          if(!result.data.code) {
+            my.alert({content: `${result.data.msg}`})
+            return
+          }
           const tradeNO = result.data.data
           my.setStorageSync({ key: 'tradeNO', data: tradeNO })
           my.tradePay({

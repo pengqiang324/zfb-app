@@ -110,7 +110,7 @@ Page({
       "pageSize": 100,
       "isBrushzanli": "true",
       "apiCode": 131,
-      "appVer": "1.3.1",
+      "appVer": "1.4.0",
       "channel": "zanli",
       "deviceId": "af72dc99efdf584b",
       "clientType": "ANDROID",
