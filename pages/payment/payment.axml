@@ -1,0 +1,20 @@
+<view class="payment-box">
+  <view class="payment-header">订单提交成功，请尽快付款!</view>
+  <view class="payment-price">
+    <am-icon type="money" size="20" class="payment-sum_price"/>
+    <text class='payment-price_jiage'>{{dataInfo.totalPrice}}</text>
+  </view>
+  <view class="payment-type">
+    <view class="payment-type-l">
+      <image
+      class="payment-detail-image"
+      mode="scaleToFill"
+      src="/images/payment_zfb.png"/>
+    </view>
+    <view class="payment-type-r">
+      <view class="payment-type-r_l">支付宝支付</view>
+      <view class="payment-type-r_r"></view>
+    </view>
+  </view>
+  <view class="payment-submit" onTap="handleComfirm">确认</view>
+</view>

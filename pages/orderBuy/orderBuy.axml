@@ -1,0 +1,62 @@
+<view class="orderBuy-box">
+  <view a:if="{{!addressInfo.name}}" class="orderBuy-add_address" onTap="handleAddress"><i-icon type="add" size="18"/>新增收货地址</view>
+  <view a:else class="orderBuy-address" onTap="handleAddress">
+    <view class="orderBuy-address_header"><text class="orderBuy-address_h__default">默认</text>{{addressInfo.region}}</view>
+    <view class="orderBuy-address_center">
+      <view class="orderBuy-address_c__left">{{addressInfo.detailAddress}}</view>
+      <view class="orderBuy-address_c__right"><i-icon type="enter" color="#DADADA"/></view>
+    </view>
+    <view class="orderBuy-address_bottom">
+      <text class="orderBuy-address_name">{{addressInfo.name}}</text>
+      {{addressInfo.tel}}
+    </view>
+  </view>
+  <view class="orderBuy-orderInfo">
+    <view class="orderBuy-orderInfo_thumb">
+      <image class="goods-detail-image"
+      data-name="scaleToFill"
+      mode="scaleToFill" 
+      src="https://t-images.5296live.com{{dataInfo.image}}"/>
+    </view>
+    <view class="orderBuy-orderInfo_detail">
+      <view class="orderBuy-orderInfo_name">{{dataInfo.name}}</view>
+      <view class="orderBuy-right-price">
+        <view>
+          <am-icon type="money" size="14" color="#FF6666"/>
+          <text class="orderBuy-right-money">{{dataInfo.totalPrice}}</text>
+        </view>
+        <view class="orderBuy-right_number">x1</view>
+      </view>
+    </view>
+  </view>
+  <view class="orderBuy-orderDetail">
+    <view class="orderBuy-orderDetail_info">
+      <view class="orderBuy-orderDetail_info__l">商品总额</view>
+      <view class="orderBuy-orderDetail_info__r orderBuy-orderDetail_r__on">
+        <am-icon type="money" size="14"/>
+        {{dataInfo.totalPrice}}
+      </view>
+    </view>
+    <view class="orderBuy-orderDetail_info">
+      <view class="orderBuy-orderDetail_info__l">
+      运费
+      </view>
+      <view class="orderBuy-orderDetail_info__r">
+        <am-icon type="money" size="14"/>
+        0.00
+      </view>
+    </view>
+    <view class="orderBuy-orderDetail_sum">
+      合计：<am-icon type="money" size="14" class="orderBuy-sum_price"/><text class="orderBuy-sum_price">{{dataInfo.totalPrice}}</text>
+    </view>
+  </view>
+  <!-- <view>
+    <button open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='phoneNumber'>授权手机号</button>
+  </view> -->
+  <view class="orderBuy-orderDetail-buy">
+    <view class="orderBuy-orderDetail-combined">
+      <am-icon type="money" size="14"/>{{dataInfo.totalPrice}}
+    </view>
+    <view class="orderBuy-orderDetail-submit" onTap="handleSubmit">提交订单</view>
+  </view>
+</view>

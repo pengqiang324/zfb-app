@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+      "i-icon": "iview-aliapp/dist/dist/icon/index",
+      "am-icon": "mini-ali-ui/es/am-icon/index"
+  }
+}

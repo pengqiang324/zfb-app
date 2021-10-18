@@ -1,0 +1,39 @@
+<view class="goods-detail-box">
+  <view class="goods-detail-header">
+    <image class="goods-detail-image"
+    mode="aspectFit" 
+    default-source="/images/logo.png"
+    src="{{compressedSrc}}"/>
+  </view>
+  <view class="goods-detail-info">
+    <view class="goods-detail-price">
+      <view class="goods-detail-prices">
+        <am-icon type="money" size="14" />
+        <text class="goods-detail-money">{{dataDetail.totalPrice}}</text>
+      </view>
+      <view class="goods-detail-saleQty">
+        销量{{dataDetail.newSaleQty}}
+      </view>
+    </view>
+    <view class="goods-detail-title">{{dataDetail.name}}</view>
+  </view>
+  <view class="goods-detail-content">
+    <view class="goods-detail_header">商品介绍</view>
+    <view a:if="{{loading}}" class="loading">
+      <loading height="36rpx" color="#F3633E" />
+      <text class="loading-text">载入中</text>
+    </view>
+    <view a:else class="goods-detail_info">
+      <image
+      a:for="{{detailImageList}}" 
+      class="goods-detail-image"
+      mode="widthFix"
+      lazy-load="{{true}}"
+    
+      src="{{item}}"/>
+    </view>
+  </view>
+  <view class="goods-detail-bottom">
+    <view class="goods-detail-buy" onTap="handleBuy">立即购买</view>
+  </view>
+</view>
