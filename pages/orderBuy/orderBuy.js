@@ -44,7 +44,9 @@ Page({
     my.navigateTo({ url: '/pages/payment/payment' })
   },
   isEmptyObject() {
-    return Object.keys(this.data.addressInfo).length === 0
+    const { data: Address } = my.getStorageSync({ key: 'address' });
+    console.log(Address)
+    return !Address || Object.keys(Address).length === 0 || !Address['name']
   },
   splitTel(str) {
     return str.substr(0,3)+'****'+str.substr(7);

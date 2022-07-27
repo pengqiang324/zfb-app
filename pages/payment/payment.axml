@@ -16,5 +16,8 @@
       <view class="payment-type-r_r"></view>
     </view>
   </view>
-  <view class="payment-submit" onTap="handleComfirm">确认</view>
+  <view class="payment-submit" onTap="handleComfirm">
+    <text a:if="{{!loading}}">确认</text>
+    <loading a:else size="100px" color="#fff" />
+  </view>
 </view>

@@ -14,9 +14,8 @@
   <view class="orderBuy-orderInfo">
     <view class="orderBuy-orderInfo_thumb">
       <image class="goods-detail-image"
-      data-name="scaleToFill"
-      mode="scaleToFill" 
-      src="https://t-images.5296live.com{{dataInfo.image}}"/>
+      mode="aspectFill" 
+      src="https://t-images.52zanyou.com{{dataInfo.image}}"/>
     </view>
     <view class="orderBuy-orderInfo_detail">
       <view class="orderBuy-orderInfo_name">{{dataInfo.name}}</view>

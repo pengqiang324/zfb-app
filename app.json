@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/indexList/indexList",
     "pages/index/index",
     "pages/internal/internal",
     "pages/orderBuy/orderBuy",
@@ -7,6 +8,6 @@
     "pages/payment/payment"
   ],
   "window": {
-    "defaultTitle": "赞丽生活"
+    "defaultTitle": "赞友商城"
   }
 }

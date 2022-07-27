@@ -1,0 +1,84 @@
+<view a:if="{{isLoading}}">
+  <ant-skeleton></ant-skeleton>
+</view>
+<view a:else>
+  <view class="search">
+    <search-bar
+      value="{{value}}"
+      focus="{{false}}"
+      maxLength="{{20}}"
+      placeholder="搜索"
+      borderColor="#FF6666"
+      onInput="handleInput"
+      onClear="handleClear"
+      onCancel="handleCancel"
+      onSubmit="handleSubmit"
+      showCancelButton="{{true}}" />
+  </view>
+
+  <view style="padding:0;" class="tabs">
+  <tabs tabs="{{tabs}}"
+    className="zl-tabs"
+    tabsName="activeTab"
+    onTabClick="handleTabClick"
+    activeTab="{{activeTab}}"
+    showPlus="{{false}}"
+    swipeable="{{false}}"
+    tabBarUnderlineWidth="20px"
+    stickyBar="{{true}}"
+    tabBarActiveTextColor="#ff6666"
+    tabBarUnderlineColor="#ff6666">
+    <!-- <block a:for="{{tabs}}">
+      <tab-content key="{{index}}"
+        tabId="{{index}}"
+        activeTab="{{activeTab}}"> -->
+      <!-- </tab-content>
+    </block> -->
+  </tabs>
+  </view>
+
+  <view class="content">
+    <view a:if="{{loading}}" class="loading">
+      <loading height="36rpx" color="#F3633E" />
+    </view>
+    <view a:else>
+      <view a:if="{{ !list.length }}">
+        <page-result
+        type="empty"
+        footer="{{footer}}"
+        isCountDown="{{true}}"
+        title="暂无数据"
+        />
+      </view>
+      <view a:else class="tab-content">
+      <block a:for="{{list}}" a:key="i" a:for-index="i" a:for-item="data">
+        <view class="tab-shop" onTap="handleTap" data-list="{{ data }}">
+          <view class="tab-thumb">
+            <image 
+            class="tab-thumb-image" 
+            mode="aspectFill" 
+            lazy-load="{{true}}" 
+            default-source="/images/logo.png" 
+            src="{{`https://t-images.52zanyou.com${data.image}`}}" 
+            onError="imageError" 
+            onLoad="imageLoad"></image>
+          </view>
+          <view class="tab-title">{{data.name}}</view>
+          <view class="tab-money-left">
+            <view class="tab-money">
+              <am-icon type="money" size="12"></am-icon>
+              <text class="tab-right-money">{{data.money}}</text>
+            </view>
+            <!-- <text class="tab-money-payment">{{data.paymentNumber}}人付款</text> -->
+          </view>
+          <!-- <view class="tab-shop-name">{{data.shopName}}</view> -->
+        </view>
+      </block>
+      <view style="width: 100%;padding-top: 15px;">
+        <i-load-more tip="客官见底了" loading="{{ false }}" />
+      </view>
+    </view>
+    </view>
+  </view>
+
+</view>

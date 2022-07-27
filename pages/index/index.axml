@@ -1,32 +1,24 @@
-
 <view class="goods-box">
-  <ant-skeleton a:if="{{ isLoading }}"/>
+  <ant-skeleton a:if="{{isLoading}}"></ant-skeleton>
   <view a:else>
-    <view a:for="{{dataList}}" data-list="{{item}}"  onTap="handleTapDetail" class="goods-list">
+    <view a:for="{{dataList}}" data-list="{{item}}" onTap="handleTapDetail" class="goods-list">
       <view class="goods-left">
-        <image 
+        <image class="goods-image" mode="scaleToFill" lazy-load="{{true}}" default-source="/images/logo.png" src="{{imageList[index]}}" onError="imageError" onLoad="imageLoad"></image>
+        <!-- <image 
           class="goods-image"
           mode="scaleToFill" 
           lazy-load="{{true}}"
           default-source="/images/logo.png" 
-          src="{{imageList[index]}}" onError="imageError" onLoad="imageLoad"/>
-          <!-- <image 
-          class="goods-image"
-          mode="scaleToFill" 
-          lazy-load="{{true}}"
-          default-source="/images/logo.png" 
-          src="https://t-images.5296live.com{{item.image}}" onError="imageError" onLoad="imageLoad"/> -->
+          src="https://t-images.52zanyou.com{{item.image}}" onError="imageError" onLoad="imageLoad"/> -->
       </view>
       <view class="goods-right">
         <view class="goods-right-title">{{item.name}}</view>
         <view class="goods-right-bottom">
           <view class="goods-right-price">
-            <am-icon type="money" size="14" />
+            <am-icon type="money" size="14"></am-icon>
             <text class="goods-right-money">{{item.totalPrice}}</text>
           </view>
-          <view class="goods-right-saleQty">
-            {{item.newSaleQty}}人付款
-          </view>
+          <view class="goods-right-saleQty">{{item.newSaleQty}}人付款</view>
         </view>
       </view>
     </view>

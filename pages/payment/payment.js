@@ -4,7 +4,8 @@ Page({
   data: {
     dataInfo: {},
     authCode: '',
-    isAmount: false
+    isAmount: false,
+    loading: false
   },
   onLoad() {
     this.init()
@@ -30,7 +31,15 @@ Page({
       })
     }
   },
+  hasLoading(loading=true) {
+    this.setData({
+      loading
+    })
+  },
   handleComfirm() {
+    const payMenting = my.getStorageSync({ key: 'paymenting' })
+    if (this.data.loading || payMenting.data) return false
+    this.hasLoading(true)
     if (this.data.isAmount) {
       // app 进入小程序页面
       const tradeNO = my.getStorageSync({key: 'tradeNO'});
@@ -45,6 +54,9 @@ Page({
             console.log(res.data)
           },
           fail: (res) => {
+          },
+          complete: () => {
+            this.hasLoading(false)
           }
         });
       }
@@ -56,14 +68,14 @@ Page({
         "page": 1,
         "pageSize": 100,
         "isBrushzanli": "true",
-        "apiCode": 131,
-        "appVer": "1.4.1",
-        "channel": "zanli",
+        "apiCode": 300,
+        "appVer": "3.0.0",
+        "channel": "zanyou",
         "deviceId": "af72dc99efdf584b",
         "clientType": "ANDROID",
         "idcode": "guest_c3524b8d02f749329498197887127f22",
         "appType": "android",
-        "packageName": "com.ninesixshop.say",
+        "packageName": "zanyouninesix.say",
         "token": "guest_6642acf47ef746baab10f049be49c5d2",
         "timestamp": timestamp
       };
@@ -75,11 +87,12 @@ Page({
         },
         data,
         success: (result) => {
-          if (result.data.code == 0) {
+          const tradeNO = result.data.data
+          if (result.data.code == 0 || !tradeNO) {
             my.alert({content: result.data.msg})
+            this.hasLoading(false)
             return
           }
-          const tradeNO = result.data.data
           my.tradePay({
             // 调用统一收单交易创建接口（alipay.trade.create），获得返回字段支付宝交易号trade_no
             tradeNO,
@@ -87,11 +100,15 @@ Page({
               console.log(res.data)
             },
             fail: (res) => {
+              
+            },
+            complete: () => {
+              this.hasLoading(false)
             }
           });
         },
         fail: () => {
-          
+          this.hasLoading(false)
         }
       });
     }
@@ -105,20 +122,21 @@ Page({
       const query = my.getStorageSync({ key: 'query' })
       if (!query.data || !authCode.data) {
         my.alert({content: '网络繁忙，请稍再试！'})
+        this.hasLoading(false)
         return
       }
       var timestamp = Date.parse(new Date())
       var queryData = {
         "tagId": 0,
         "isBrushzanli": "true",
-        "apiCode": 131,
-        "appVer": "1.4.1",
-        "channel": "zanli",
+        "apiCode": 300,
+        "appVer": "3.0.0",
+        "channel": "zanyou",
         "deviceId": "af72dc99efdf584b",
         "clientType": "ANDROID",
         "idcode": "guest_c3524b8d02f749329498197887127f22",
         "appType": "android",
-        "packageName": "com.ninesixshop.say",
+        "packageName": "zanyouninesix.say",
         "token": "guest_6642acf47ef746baab10f049be49c5d2",
         "timestamp": timestamp
       };
@@ -129,21 +147,23 @@ Page({
       }
       if (!query.data.profile) {
         my.alert({content: '参数有误！'})
+        this.hasLoading(false)
         return
       }
       my.request({
-        url: `${query.data.profile}/mall/order/alxcxPay`,
+        url: `${query.data.profile}/api/app/shops/order/pay/alxcxPay/idcode/guest_c3524b8d02f749329498197887127f22?appSrc=1`,
         method: 'POST',
         headers: {
           "content-type":  'application/x-www-form-urlencoded'
         },
         data,
         success: (result) => {
-          if(!result.data.code) {
+          const tradeNO = result.data.data
+          if(!result.data.code || !tradeNO) {
             my.alert({content: `${result.data.msg}`})
+            this.hasLoading(false)
             return
           }
-          const tradeNO = result.data.data
           my.setStorageSync({ key: 'tradeNO', data: tradeNO })
           my.tradePay({
             // 调用统一收单交易创建接口（alipay.trade.create），获得返回字段支付宝交易号trade_no
@@ -153,11 +173,15 @@ Page({
             },
             fail: (res) => {
               my.alert({content: JSON.stringify(res)})
+            },
+            complete: () => {
+              this.hasLoading(false)
             }
           });
         },
         fail: () => {
           my.alert({content: '请求出错啦！'})
+          this.hasLoading(false)
         },
         complete: () => {
           my.hideLoading();

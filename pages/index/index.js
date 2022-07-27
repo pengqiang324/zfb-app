@@ -109,21 +109,21 @@ Page({
       "page": 1,
       "pageSize": 100,
       "isBrushzanli": "true",
-      "apiCode": 131,
-      "appVer": "1.4.0",
-      "channel": "zanli",
+      "apiCode": 300,
+      "appVer": "3.0.0",
+      "channel": "zanyou",
       "deviceId": "af72dc99efdf584b",
       "clientType": "ANDROID",
       "idcode": "guest_c3524b8d02f749329498197887127f22",
       "appType": "android",
-      "packageName": "com.ninesixshop.say",
+      "packageName": "zanyouninesix.say",
       "token": "guest_6642acf47ef746baab10f049be49c5d2",
       "timestamp": timestamp
     };
-   
+    
     // 获取用户信息并存储数据
     my.request({
-      url: `https://t-api.5296live.com/mall/goods/search/tag?dt=${timestamp}&signCheck=x8988276LJ5M6f3036gG%3D%3D`,
+      url: `https://t-api.52zanyou.com/mall/goods/search/tag?dt=${timestamp}&signCheck=x8988276LJ5M6f3036gG%3D%3D`,
       method: 'POST',
       headers: {
         "content-type":  'application/x-www-form-urlencoded'
@@ -132,15 +132,17 @@ Page({
       timeout: 10000,
       success: (result) => {
         const { dataList } = result.data
-        const newData = dataList.slice()
-        newData.forEach((item) => {
-          item['newSaleQty'] = this.splitPrice(item.saleQty)
-          item['totalPrice'] = fmoney(item.price)
-        })
-        this.setData({
-          dataList: newData,
-          isLoading: false
-        })
+        if (dataList && dataList.length) {
+          const newData = dataList.slice()
+          newData.forEach((item) => {
+            item['newSaleQty'] = this.splitPrice(item.saleQty)
+            item['totalPrice'] = fmoney(item.price)
+          })
+          this.setData({
+            dataList: newData,
+            isLoading: false
+          })
+        }
       },
       fail: () => {
         
@@ -150,10 +152,12 @@ Page({
   getData() {
     const newData = this.data.dataList.slice()
     const a = {}
+    console.log(this.data.dataList)
     newData.forEach((item,index) => {
       my.getImageInfo({
-        src:`https://t-images.5296live.com${item.image}`,
+        src:`https://t-images.52zanyou.com${item.image}`,
         success:(res)=>{
+          console.log(res)
           my.compressImage({
             apFilePaths: [res.path],
             compressLevel: 0,

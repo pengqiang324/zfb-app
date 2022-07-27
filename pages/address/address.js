@@ -40,6 +40,22 @@ Page({
   },
   handleSave() {
     //存储地址
+    const { name, iphone, region } = this.data.form
+    if (!name || !iphone) {
+      my.showToast({
+        type: 'none',
+        content: '收货人/手机号码不能为空',
+        duration: 3000
+      });
+      return
+    } else if (region === '请输入所在地区') {
+      my.showToast({
+        type: 'none',
+        content: '请选择所在地区',
+        duration: 3000
+      });
+      return
+    }
     my.setStorageSync({
       key: 'address',
       data: {
