@@ -1,5 +1,5 @@
 {
-  "enableAppxNg": true,
+  "enableAppxNg": false,
   "component2": true,
   "enableHMR": true
 }
